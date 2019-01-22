@@ -1,0 +1,23 @@
+{
+  "name": "rdf-datacube-componentproperty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "d3-sparql": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktk/rdf-datacube-componentproperty.git"
+  },
+  "author": "Adrian Gschwend",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ktk/rdf-datacube-componentproperty/issues"
+  },
+  "homepage": "https://github.com/ktk/rdf-datacube-componentproperty#readme"
+}
