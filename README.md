@@ -1,6 +1,6 @@
 # RDF Data Cube: ComponentProperty assembler
 
-This is a simple node.js-script that connects to the list of specified SPARQL endpoints and tries to collect a list of all [RDF Data Cube](https://www.w3.org/TR/vocab-data-cube/#dsd-dimensions) `qb:ComponentProperties`. This is usually `qb:DimensionProperty`, `qb:AttributeProperty` and `qb:MeasureProperty`.
+This is a simple node.js-script that connects to each SPARQL endpoint listed in the array `endpoints` and tries to collect a list of all [RDF Data Cube](https://www.w3.org/TR/vocab-data-cube/#dsd-dimensions) `qb:ComponentProperties`. This is usually `qb:DimensionProperty`, `qb:AttributeProperty` and `qb:MeasureProperty`.
 
 ## Usage
 
