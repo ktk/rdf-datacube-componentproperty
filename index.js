@@ -1,5 +1,4 @@
 const d3 = require('d3-sparql')
-const util = require('util')
 
 const cubeAttributes = `
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -29,12 +28,42 @@ const endpoints = [
   'http://data.cso.io/sparql'
 ]
 
-Promise.all(endpoints.map(endpoint => {
-  return util.promisify(d3.sparql)(endpoint, cubeAttributes)
-})).then(results => {
-  const data = [].concat(results)
+function runQuery (endpoint, query) {
+  return new Promise((resolve, reject) => {
+    d3.sparql(endpoint, query, (err, data) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(data || [])
+      }
+    })
+  })
+}
 
-  console.log(data)
+Promise.all(endpoints.map(endpoint => {
+  return runQuery(endpoint, cubeAttributes).then(data => {
+    data = data || []
+
+    console.error(`fetched ${data.length} properties from ${endpoint}`)
+
+    return data
+  }).catch(err => {
+    console.error(`error fetching properties from ${endpoint}: ${err.message.slice(0, 100)}`)
+
+    return []
+  })
+})).then(results => {
+  const data = results.reduce((data, result) => data.concat(result))
+
+  if (data.length === 0) {
+    return Promise.reject(new Error('no properties found'))
+  }
+
+  // CSV header
+  process.stdout.write(`${Object.keys(data[0]).join(',')}\n`)
+
+  // CSV values
+  process.stdout.write(data.map(row => Object.values(row).join(',')).join('\n'))
 }).catch(err => {
   console.error(err)
 })
