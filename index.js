@@ -14,8 +14,9 @@ SELECT * WHERE { GRAPH ?g {
         qb:MeasureProperty 
     }
     
-    ?measure a ?class ;
-    OPTIONAL { ?measure rdfs:label|skos:prefLabel|schema:name ?label }    
+    ?measure a ?class .
+    OPTIONAL { ?measure rdfs:label|skos:prefLabel|schema:name|rdfs:comment ?label }    
+    OPTIONAL { ?measure rdfs:comment ?comment }    
     
 }} 
 `

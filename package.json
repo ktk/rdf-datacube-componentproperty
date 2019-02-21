@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "d3-sparql": "^1.0.0"
+    "d3-sparql": "^1.0.0",
+    "namespace": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
